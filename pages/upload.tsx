@@ -9,6 +9,7 @@ import useAuthStore from "../store/authStore";
 import { client } from "../utils/client";
 
 import { topics } from "../utils/constants";
+import { BASE_URL } from "../utils";
 
 const Upload = () => {
   const [isLoading, setIsLoading] = useState(false);
