@@ -6,7 +6,7 @@ const NoResults = ({
   icon = <MdOutlineVideocamOff />,
 }: {
   text: string;
-  icon: ReactNode;
+  icon?: ReactNode;
 }) => {
   return (
     <div className="flex flex-col justify-center items-center h-full w-full">
