@@ -69,14 +69,14 @@ const Upload = () => {
   };
 
   return (
-    <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
-      <div className="bg-white rounded-lg xl:h-[80vh] w-[60%] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
-        <div>
+    <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 p-2 bg-white justify-center">
+      <div className="rounded-lg xl:h-[80vh] lg:w-[70%] flex gap-6 flex-wrap justify-center md:justify-between items-center p-14 pt-6">
+        <div className="lg:w-[45%] pb-5">
           <div>
             <p className="text-2xl font-bold">Upload Video</p>
             <p className="text-md text-gray-400 mt-1">Post a video to your account</p>
           </div>
-          <div className="border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100">
+          <div className="border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] cursor-pointer hover:border-red-300 hover:bg-gray-100">
             {isLoading ? (
               <p>Uploading...</p>
             ) : (
@@ -87,7 +87,7 @@ const Upload = () => {
                       src={videoAsset.url}
                       loop
                       controls
-                      className="rounded-xl h-[450px] mt-16 bg-black"
+                      className="rounded-xl h-[450px] bg-black"
                     ></video>
                   </div>
                 ) : (
@@ -127,20 +127,20 @@ const Upload = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 pb-10">
+        <div className="flex flex-col gap-3 pb-10 lg:w-[50%]">
           <label className="text-md font-medium">Caption</label>
           <input
             type="text"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            className="rounded outline-none text-md border-2 border-gray-200 p-2"
+            className="rounded outline-none text-md border-2 border-gray-200 p-2 w-full"
           />
 
           <label className="text-md font-medium">Choose a Category</label>
           <select
             name=""
             onChange={(e) => setCategory(e.target.value)}
-            className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
+            className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer w-full"
           >
             {topics.map((topic) => (
               <option

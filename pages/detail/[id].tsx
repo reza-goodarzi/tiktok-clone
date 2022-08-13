@@ -69,8 +69,8 @@ const Detail = ({ postDetails }: IProps) => {
   if (!post) return null;
 
   return (
-    <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap">
-      <div className="relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-black">
+    <div className="flex w-full lg:h-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap">
+      <div className="relative flex-2 w-full lg:w-9/12 flex justify-center items-center bg-black">
         {/* bg-blurred-img bg-no-repeat bg-cover bg-center */}
 
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
@@ -79,14 +79,14 @@ const Detail = ({ postDetails }: IProps) => {
           </p>
         </div>
         <div className="relative">
-          <div className="lg:h-[100vh] h-[60-vh]">
+          <div className="lg:h-[100vh] h-[100vh] lg:w-[60vw]">
             <video
               ref={videoRef}
               muted={isVideoMuted}
               loop
               onClick={onVideoClick}
               src={post.video.asset.url}
-              className="h-full cursor-pointer"
+              className="h-full cursor-pointer w-full"
             ></video>
           </div>
           <div className="absolute top-[45%] left-[45%]">
@@ -110,47 +110,49 @@ const Detail = ({ postDetails }: IProps) => {
         </div>
       </div>
 
-      <div className="relative w-[1200px] md:w-[900px] lg:w-[700px]">
-        <div className="lg:mt-20 mt-10">
-          <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
-            <div className="ml-4  md:w-20 md:h-20 w-16 h-16">
-              <Link href="/">
-                <Image
-                  width={62}
-                  height={62}
-                  className="rounded-full object-cover"
-                  src={post.postedBy.image}
-                  alt="profile photo"
-                  layout="responsive"
+      <div className="relative lg:w-[40vw] w-full flex flex-col">
+        <div className="lg:pt-4 pt-2 h-full">
+          <div className="lg:h-[40%]">
+            <div className="flex items-center gap-3 p-2 cursor-pointer font-semibold rounded">
+              <div className=" md:w-20 md:h-20 w-16 h-16">
+                <Link href="/">
+                  <Image
+                    width={62}
+                    height={62}
+                    className="rounded-full object-cover"
+                    src={post.postedBy.image}
+                    alt="profile photo"
+                    layout="responsive"
+                  />
+                </Link>
+              </div>
+
+              <div>
+                <Link href="/">
+                  <div className="flex flex-col gap-2">
+                    <p className="flex gap-2 items-center md:text-md font-bold text-primary">
+                      {post.postedBy.userName}
+                      <GoVerified className="text-blue-400 text-md" />
+                    </p>
+                    <p className="capitalize font-medium text-xs text-gray-500">
+                      {post.postedBy.userName}
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <p className="px-4 md:px-10 pt-4 text-lg text-gray-600">{post.caption}</p>
+
+            <div className="my-4 px-10">
+              {userProfile && (
+                <LikeButton
+                  likes={post.likes}
+                  handleLike={() => handleLike(true)}
+                  handleDislike={() => handleLike(false)}
                 />
-              </Link>
+              )}
             </div>
-
-            <div>
-              <Link href="/">
-                <div className="flex flex-col gap-2">
-                  <p className="flex gap-2 items-center md:text-md font-bold text-primary">
-                    {post.postedBy.userName}
-                    <GoVerified className="text-blue-400 text-md" />
-                  </p>
-                  <p className="capitalize font-medium text-xs text-gray-500 hidden md:block">
-                    {post.postedBy.userName}
-                  </p>
-                </div>
-              </Link>
-            </div>
-          </div>
-
-          <p className="px-10 text-lg text-gray-600">{post.caption}</p>
-
-          <div className="mt-10 px-10">
-            {userProfile && (
-              <LikeButton
-                likes={post.likes}
-                handleLike={() => handleLike(true)}
-                handleDislike={() => handleLike(false)}
-              />
-            )}
           </div>
 
           <Comments
